@@ -5,6 +5,8 @@
  *  holds all information dealing with grpahics for the game
  */
 
+#include <sdl/SDL.h>
+
 #include <map>
 #include <string>
 
