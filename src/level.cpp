@@ -1,6 +1,6 @@
 #include "level.h"
 #include "graphics.h"
-
+#include "globals.h"
 #include <sdl/SDL.h>
 
 Level::Level(){}
@@ -34,10 +34,10 @@ void Level::draw(Graphics &graphics){
     destRect.w = 64, destRect.h = 64;
     for(int x=0 ; x < this->_size.x / 64; x++){
         for(int y=0 ; y < this->_size.y / 64; y++){
-            destRect.x = x * 64;
-            destRect.y = y * 64;
-            destRect.w = 64;
-            destRect.h = 64;
+            destRect.x = x * 64 * globals::SPRITES_SCALE;
+            destRect.y = y * 64* globals::SPRITES_SCALE;
+            destRect.w = 64 * globals::SPRITES_SCALE;
+            destRect.h = 64 * globals::SPRITES_SCALE;
             graphics.blitSurface(this->_backgroundTexture, &sourceRect, &destRect);
         }
     }
