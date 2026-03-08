@@ -1,11 +1,8 @@
-#define SDL_MAIN_HANDLED
-#include <sdl/SDL.h>
-#include "graphics.h"
+// #define SDL_MAIN_HANDLED
+// #include <sdl/SDL.h>
+#include "game.h"
 
 int main(int argc, const char* argv[]){
-    Graphics graphics;
-    while(true){
-
-    }
+    Game game;
     return 0;
 }
