@@ -5,7 +5,7 @@
 #include "input.h"
 
 /*  Game class
- *  This class holdsall informatoion for our main game loop
+ *  This class holds all informatoion for our main game loop
  */
 
 namespace {
@@ -27,11 +27,20 @@ void Game::gameLoop(){
     Input input;
     SDL_Event event;
 
+    this->_player = Sprite(graphics, "content/sprites/MyChar.png", 0, 0, 16, 16, 100, 100);
+
     int LAST_UPDATE_TIME = SDL_GetTicks();
+
     // Start the game loop 
     while(true){
+        // Process input 
+        /*  Input must reset per frame (so keys aren't held forever)
+         */
         input.beginNewFrame();
 
+        // SDL events like quit, keypress
+        /*  
+         */
         if(SDL_PollEvent(&event)){
             if(event.type == SDL_KEYDOWN) {
                 if(event.key.repeat == 0){
@@ -49,15 +58,29 @@ void Game::gameLoop(){
             return;
         }
 
+        // Update gamem logic (movement, physics)
+        /*  Update is where physics, ai, and animations are calculated.
+         *  Elapsed time keeps movement smooth regardless of FPS.
+         */
         const int CURRENT_TIME_MS = SDL_GetTicks();
         int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME;
         this->update(std::min(ELAPSED_TIME_MS, MAX_FRAME_TIME));
+
+        // Render everything
+        /*  Draw is wherethe current frame is rendered.
+         */
+        this->draw(graphics);
+
         LAST_UPDATE_TIME = CURRENT_TIME_MS;
     }
 }
 
 void Game::draw(Graphics &graphics){
+    graphics.clear();
 
+    this->_player.draw(graphics, 100, 100);
+
+    graphics.flip();
 }
 
 void Game::update(float elapsedTime){

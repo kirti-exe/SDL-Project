@@ -1,7 +1,9 @@
 #include "input.h"
 
 /*  Input class
- *  keeps track of keyboard state
+ *  keeps track of keyboard states: pressed, held, released
+ *  Allows for frame-based actions like jump (pressed once) vs movement (held)
+ *  Keeps your engine decoupled from SDL
  */
 
 // This function gets called at the beginning of each new frame
