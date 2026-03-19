@@ -1,10 +1,10 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
-
 /*  Graphics class
  *  Holds all the information dealing with the graphics for the game
  */
 
+#include <sdl/SDL.h>
 #include <map>
 #include <string>
 
